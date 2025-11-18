@@ -1,10 +1,21 @@
+"""Manages a collection of Book objects."""
 class Library:
+    
+    """Initializes a new, empty library."""
     def __init__(self):
         self.books = {}
 
     # ---------------------------------------
     def add_book(self, book):
-        """Add a book to the library if ISBN is unique."""
+        
+        """
+                Adds a Book object to the library.
+                
+                Prevents duplicates based on ISBN.
+                
+                Args:
+                    book (Book): The Book object to add.
+                """
         if book.isbn in self.books.keys():
             print(f"Error: Book with ISBN {book.isbn} already exists.")
         else:
