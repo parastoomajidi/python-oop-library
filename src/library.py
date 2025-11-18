@@ -22,6 +22,12 @@ class Library:
             self.books[book.isbn] = book
             print(f"Book '{book.title}' added successfully!")
 
+    def find_book_by_isbn(self, isbn):
+        if self.books.get(isbn):
+            print(self.books.get(isbn))
+        else:
+            print("not found")
+
     # ---------------------------------------
     def list_books(self):
         """List all books in the library."""
