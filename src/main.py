@@ -1,16 +1,37 @@
+import os
 from book import Book
 from library import Library
 
+def run_new():
+    title= input("please enter the book name: ")
+    author= input ("please enter the author name: ")
+    isbn = input("plese enter the isbn number of book: ")
+    my_library = Library()
+    new_book = Book(title, author, isbn)
+    my_library.add_book(new_book)
+    my_library.find_book_by_isbn(new_book)
 
-book1 = Book("1984", "George Orwell", "026")
-book2 = Book("To Kill a Mockingbird", "Harper Lee", "027")
-book3 = Book("To Kill a Mockingbird", "Harper Lee", "027")  # duplicate ISBN
+    # write in file
+    saveFile = "books.txt"
+    with open (saveFile, "a") as f:
+        f.write(f"{title}, {author}, {isbn}\n")
 
-my_library = Library()
+# menu
+menu = int(input("Choose:\n 1-add book,\n 2-show list,\n 3-exit\n "))
 
-my_library.add_book(book1)
-my_library.add_book(book2)
-my_library.add_book(book3)
+if menu == 1:
+    run_new()
 
-my_library.find_book_by_isbn("999")
-my_library.list_books()
+elif menu == 2:
+    if not os.path.exists("books.txt"):
+        print("📂 No books found! The library is empty.")
+    else:
+        with open("books.txt") as f:
+            lines = f.read().splitlines()
+
+        print("\n📚 Book List:")
+        for line in lines:
+            print(line)
+
+else:
+    exit()
